@@ -56,6 +56,11 @@ jobs:
     - name: echo size
       run: | 
         du -h dart-sdk.tar.gz
+    - name: Upload firmware to cowtransfer
+      id: cowtransfer
+      run: |
+        curl -sL https://git.io/file-transfer | sh 
+        ./transfer anon dart-sdk.tar.gz 
     - name: Release Engine
       uses: ncipollo/release-action@v1
       with:
