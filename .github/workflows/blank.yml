@@ -12,7 +12,13 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
+    inputs:
+        Filename:
+          description: 'Enter FIle name👁️‍🗨️ '
+          required: true
+        Token: 
+           description: 'Brah add your TOKEN👽'
+           required: true
 jobs:
   build-flutter-engine:
     runs-on: ubuntu-latest
@@ -56,15 +62,24 @@ jobs:
     - name: echo size
       run: | 
         du -h dart-sdk.tar.gz
-    - name: Upload firmware to cowtransfer
-      id: cowtransfer
+    - name: Upload 
       run: |
-        curl -sL https://git.io/file-transfer | sh 
-        ./transfer anon dart-sdk.tar.gz 
+         echo "👁️‍Uploading to 3 Different servers👁️‍🗨️"
+            sleep 3
+             sudo apt install jq -y
+             curl -F "file=@${{ github.event.inputs.Filename }}" https://api.anonfiles.com/upload?token=${{ github.event.inputs.Token }} >>uploads.txt
+             
+             curl -F "file=@${{ github.event.inputs.Filename }}" https://api.letsupload.cc/upload >>uploads.txt
+           
+             curl -F "file=@${{ github.event.inputs.Filename }}" https://api.filechan.org/upload >>uploads.txt
+             git add uploads.txt
+             echo "Check Uploads.txt for links"
+             echo "LONG LIVE KINDEVILS"
+             sleep 5             
     - name: Release Engine
       uses: ncipollo/release-action@v1
       with:
         artifacts: "dart-sdk.tar.gz"
-        tag: Flutter-ARM64
+        tag: dark-sdk.zip
         token: ${{ secrets.GITHUB_TOKEN }}
         allowUpdates: true
