@@ -53,6 +53,9 @@ jobs:
     - name: tar source
       run: |
         tar -zcvf dart-sdk.tar.gz dart-sdk/
+    - name: echo size
+       run:|
+        du -h dart-sdk.tar.gz
     - name: Get current date
       id: date
       run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
