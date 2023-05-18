@@ -40,7 +40,7 @@ jobs:
         cd dart-sdk
         gclient sync
     - name: tar source
-       run: |
+      run: |
         cd ..
         tar -zcvf dart-sdk.tar.gz dart-sdk/
     - name: Get current date
