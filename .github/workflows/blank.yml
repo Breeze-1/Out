@@ -54,11 +54,8 @@ jobs:
       run: |
         tar -zcvf dart-sdk.tar.gz dart-sdk/
     - name: echo size
-       run:|
+      run: | 
         du -h dart-sdk.tar.gz
-    - name: Get current date
-      id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
     - name: Release Engine
       uses: ncipollo/release-action@v1
       with:
