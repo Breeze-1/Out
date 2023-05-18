@@ -42,6 +42,14 @@ jobs:
         mkdir dart-sdk
         cd dart-sdk
         fetch dart
+        cd sdk
+        git checkout master
+        ls
+        sed -i "s#/data/local/tmp#/data/data/com.termux/files/home/tmp#g" runtime/bin/directory_android.cc
+        sed -n '431,433p' runtime/bin/directory_android.cc
+        cd ../
+        echo "target_os = ['android','linux']" >> .gclient
+        gclient sync
     - name: tar source
       run: |
         cd ..
