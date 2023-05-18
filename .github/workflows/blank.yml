@@ -41,7 +41,7 @@ jobs:
         export PATH="$PATH:$PWD/depot_tools"
         mkdir dart-sdk
         cd dart-sdk
-        gclient sync
+        fetch dart
     - name: tar source
       run: |
         cd ..
